@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ property.description }}</h2>
+  <p>{{ property.street }}, {{ property.colony }}, {{ property.city }}, {{ property.postal_code }}</p>
+  <p>Price: {{ property.price }}</p>
+  <p>Type: {{ property.get_type_display }}</p>
+  <img src="{{ property.image.url }}" alt="{{ property.description }}">
+  <p><a href="{% url 'property_update' property.pk %}">Edit</a></p>
+  <form method="POST" action="{% url 'property_delete' property.pk %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <a href="{% url 'property_list_create' %}">Back to list</a>
+{% endblock %}

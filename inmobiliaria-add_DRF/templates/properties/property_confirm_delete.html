@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Are you sure you want to delete "{{ property.description }}"?</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+  </form>
+  <a href="{% url 'property_detail' property.pk %}">Cancel</a>
+{% endblock %}
+
